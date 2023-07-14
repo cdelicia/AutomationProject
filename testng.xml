@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="All API tests using RestAssured">
+    <test name="REST API Reqres">
+        <classes>
+            <class name="api.PredefinedDataTest"></class>
+            <class name="api.ListOfAllUsersDataTest"></class>
+            <class name="api.CreateNewUserTest"></class>
+            <class name="api.UpdateUserTest"></class>
+            <class name="api.DeleteUserTest"></class>
+        </classes>
+    </test>
+</suite>
