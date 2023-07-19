@@ -42,14 +42,18 @@ public class TestEnvironmentConfig {
         if (testEnv.equals("local")) {
             switch (browser) {
                 case "chrome":
-                    WebDriverManager.chromedriver().arm64().setup();
+                    //WebDriverManager.chromedriver().arm64().setup();
+                    System.setProperty("webdriver.chrome.driver", "/Users/dima/Desktop/chromedriver_mac_arm64/chromedriver");
+
                     Map<String, Object> chromePreferences = new HashMap<>();
                     chromePreferences.put("profile.default_content_settings.geolocation", 2);
                     chromePreferences.put("download.prompt_for_download", false);
                     chromePreferences.put("download.directory_upgrade", true);
                     chromePreferences.put("credentials_enable_service", false);
                     chromePreferences.put("password_manager_enabled", false);
+
                     ChromeOptions chromeOptions = new ChromeOptions();
+                    //chromeOptions.setBinary("/Users/dima/.cache/selenium/chromedriver/mac-arm64/115.0.5790.98/chromedriver");
                     if (Constants.START_MAXIMIZED)
                         chromeOptions.addArguments("--start-maximized");
                     chromeOptions.addArguments("--no-sandbox");
@@ -61,6 +65,7 @@ public class TestEnvironmentConfig {
                         chromeOptions.addArguments("--window-size=1920,1024");
                         chromeOptions.addArguments("--disable-gpu");
                     }
+                    //driver = new ChromeDriver();
                     driver = new ChromeDriver(chromeOptions);
                     break;
                 case "firefox":
@@ -89,7 +94,7 @@ public class TestEnvironmentConfig {
                 default:
                     throw new RuntimeException("Driver is not implemented for: " + browser);
             }
-        } else if (testEnv.equals("grid")) {
+        } /*else if (testEnv.equals("grid")) {
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setBrowserName(browser);
             capabilities.setPlatform(Platform.ANY);
@@ -99,7 +104,7 @@ public class TestEnvironmentConfig {
             } catch (MalformedURLException e) {
                 throw new RuntimeException(e.getMessage());
             }
-        } else {
+        }*/ else {
             throw new RuntimeException("Unsupported test environment: " + testEnv);
         }
     }

@@ -22,6 +22,58 @@ public class StepsDefinitionsCucumber {
         Thread.sleep((long) (Constants.WAIT_FOR_SECONDS * 1000));
     }
 
+    @Given("I open {string} page")
+    public void iOpenSomePage(String page) throws InterruptedException {
+        switch (page) {
+            case "Login":
+                getDriver().get(Constants.URL_LOGIN);
+                break;
+            case "Registration":
+                getDriver().get(Constants.URL_REGISTRATION);
+                break;
+            case "Forgot password":
+                getDriver().get(Constants.URL_FORGOT_PASSWORD);
+                break;
+            default:
+                System.out.println("\nTHE ERROR: Wrong page \"" + page + "\", double check page name in the cucumber step!\n");
+        }
+        Thread.sleep((long) (Constants.WAIT_FOR_SECONDS * 1000));
+    }
+
+    @Then("I sign in as a {string}")
+    public void iSignInAsTheUser(String name) throws InterruptedException {
+        switch (name) {
+            case "Milan Teacher":
+                getDriver().findElement(By.xpath(Constants.FIELD_EMAIL_XPATH)).sendKeys(Constants.MILAN_TEACHER_EMAIL);
+                getDriver().findElement(By.xpath(Constants.FIELD_PASSWORD_XPATH)).sendKeys(Constants.MILAN_TEACHER_PASSWORD);
+                getDriver().findElement(By.xpath(Constants.BUTTON_SIGN_IN_XPATH)).click();
+                break;
+            case "Alex Student":
+                getDriver().findElement(By.xpath(Constants.FIELD_EMAIL_XPATH)).sendKeys(Constants.ALEX_STUDENT_EMAIL);
+                getDriver().findElement(By.xpath(Constants.FIELD_PASSWORD_XPATH)).sendKeys(Constants.ALEX_STUDENT_PASSWORD);
+                getDriver().findElement(By.xpath(Constants.BUTTON_SIGN_IN_XPATH)).click();
+                break;
+            case "volha teacher":
+                getDriver().findElement(By.xpath(Constants.FIELD_EMAIL_XPATH)).sendKeys(Constants.VOLHA_STUDENT_EMAIL);
+                getDriver().findElement(By.xpath(Constants.FIELD_PASSWORD_XPATH)).sendKeys(Constants.VOLHA_STUDENT_PASSWORD);
+                getDriver().findElement(By.xpath(Constants.BUTTON_SIGN_IN_XPATH)).click();
+                break;
+            case "Diana Brown":
+                getDriver().findElement(By.xpath(Constants.FIELD_EMAIL_XPATH)).sendKeys(Constants.DIANA_TEACHER_EMAIL);
+                getDriver().findElement(By.xpath(Constants.FIELD_PASSWORD_XPATH)).sendKeys(Constants.DIANA_TEACHER_PASSWORD);
+                getDriver().findElement(By.xpath(Constants.BUTTON_SIGN_IN_XPATH)).click();
+                break;
+            case "Chris":
+                getDriver().findElement(By.xpath(Constants.FIELD_EMAIL_XPATH)).sendKeys(Constants.CHRIS_STUDENT_EMAIL);
+                getDriver().findElement(By.xpath(Constants.FIELD_PASSWORD_XPATH)).sendKeys(Constants.CHRIS_STUDENT_PASSWORD);
+                getDriver().findElement(By.xpath(Constants.BUTTON_SIGN_IN_XPATH)).click();
+                break;
+            default:
+                System.out.println("\nTHE ERROR: User \"" + name + "\" doesn't exist, double check page name in the cucumber step!\n");
+        }
+        Thread.sleep(1000);
+    }
+
     @Then("^I resize window to (\\d+) and (\\d+)$")
     public void iResizeWindowToAnd(int width, int height) {
         Dimension dimension = new Dimension(width, height);
@@ -37,72 +89,74 @@ public class StepsDefinitionsCucumber {
     public void iMaximizeWindow() {
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
         Dimension maxWindowSize = new Dimension((int) screenSize.getWidth(), (int) screenSize.getHeight());
-        getDriver().manage().window().setPosition(new Point(0,0));
+        getDriver().manage().window().setPosition(new Point(0, 0));
         getDriver().manage().window().setSize(maxWindowSize);
     }
 
     @Then("The element with xpath {string} should be presented")
     public void elementWithXpathShouldBePresented(String xpath) throws InterruptedException {
-        Thread.sleep((long) (Constants.WAIT_FOR_SECONDS * 1000));
         assertThat(getDriver().findElements(By.xpath(xpath))).hasSize(1);
+        Thread.sleep((long) (Constants.WAIT_FOR_SECONDS * 1000));
     }
 
     @Then("^The element with xpath \"([^\"]*)\" should not be presented$") //OLD
     public void elementWithXpathShouldNotBePresent(String xpath) throws InterruptedException {
-        Thread.sleep((long) (Constants.WAIT_FOR_SECONDS * 1000));
         assertThat(getDriver().findElements(By.xpath(xpath))).hasSize(0);
+        Thread.sleep((long) (Constants.WAIT_FOR_SECONDS * 1000));
     }
 
     @Then("^I wait for element with xpath \"([^\"]*)\" to be present$")
     public void iWaitForElementWithXpathToAppear(String xpath) {
-        new WebDriverWait(getDriver(), 10, 200).until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
+        new WebDriverWait(getDriver(), 10)
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
     }
 
     @Then("^I wait for element with xpath \"([^\"]*)\" to not be present$")
     public void iWaitForElementWithXpathToNotBePresent(String xpath) {
-        new WebDriverWait(getDriver(), 10, 200).until(ExpectedConditions.not(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath))));
+        new WebDriverWait(getDriver(), 10).
+                until(ExpectedConditions.not(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath))));
     }
 
     @Then("^element with xpath \"([^\"]*)\" should be displayed$")
     public void elementWithXpathShouldBeDisplayed(String xpath) throws InterruptedException {
-        Thread.sleep((long) (Constants.WAIT_FOR_SECONDS * 1000));
         assertThat(getDriver().findElement(By.xpath(xpath)).isDisplayed()).isTrue();
+        Thread.sleep((long) (Constants.WAIT_FOR_SECONDS * 1000));
     }
 
     @Then("^element with xpath \"([^\"]*)\" should not be displayed$")
     public void elementWithXpathShouldNotBeDisplayed(String xpath) throws InterruptedException {
-        Thread.sleep((long) (Constants.WAIT_FOR_SECONDS * 1000));
         assertThat(getDriver().findElement(By.xpath(xpath)).isDisplayed()).isFalse();
+        Thread.sleep((long) (Constants.WAIT_FOR_SECONDS * 1000));
     }
 
     @Then("^element with xpath \"([^\"]*)\" should be enabled$")
     public void elementWithXpathShouldBeEnabled(String xpath) throws InterruptedException {
-        Thread.sleep((long) (Constants.WAIT_FOR_SECONDS * 1000));
         assertThat(getDriver().findElement(By.xpath(xpath)).isEnabled()).isTrue();
+        Thread.sleep((long) (Constants.WAIT_FOR_SECONDS * 1000));
     }
 
     @Then("^element with xpath \"([^\"]*)\" should be disabled")
     public void elementWithXpathShouldBeDisabled(String xpath) throws InterruptedException {
-        Thread.sleep((long) (Constants.WAIT_FOR_SECONDS * 1000));
         assertThat(getDriver().findElement(By.xpath(xpath)).isEnabled()).isFalse();
+        Thread.sleep((long) (Constants.WAIT_FOR_SECONDS * 1000));
     }
 
     @Then("^element with xpath \"([^\"]*)\" should be selected$")
     public void elementWithXpathShouldBeSelected(String xpath) throws InterruptedException {
-        Thread.sleep((long) (Constants.WAIT_FOR_SECONDS * 1000));
         assertThat(getDriver().findElement(By.xpath(xpath)).isSelected()).isTrue();
+        Thread.sleep((long) (Constants.WAIT_FOR_SECONDS * 1000));
     }
 
     @Then("^element with xpath \"([^\"]*)\" should not be selected$")
     public void elementWithXpathShouldNotBeSelected(String xpath) throws InterruptedException {
-        Thread.sleep((long) (Constants.WAIT_FOR_SECONDS * 1000));
         assertThat(getDriver().findElement(By.xpath(xpath)).isSelected()).isFalse();
+        Thread.sleep((long) (Constants.WAIT_FOR_SECONDS * 1000));
     }
 
     @When("^I type \"([^\"]*)\" into element with xpath \"([^\"]*)\"$")
     public void iTypeIntoElementWithXpath(String text, String xpath) throws InterruptedException {
-        Thread.sleep((long) (Constants.WAIT_FOR_SECONDS * 1000));
         getDriver().findElement(By.xpath(xpath)).sendKeys(text);
+        Thread.sleep((long) (Constants.WAIT_FOR_SECONDS * 1000));
     }
 
     @Then("^I click on element with xpath \"([^\"]*)\"$")
@@ -129,41 +183,41 @@ public class StepsDefinitionsCucumber {
     @Then("^element with xpath \"([^\"]*)\" should have text as \"([^\"]*)\"$")
     public void elementWithXpathShouldHaveTextAs(String xpath, String text) throws InterruptedException {
         String actualText = getDriver().findElement(By.xpath(xpath)).getText();
-        Thread.sleep((long) (Constants.WAIT_FOR_SECONDS * 1000));
         assertThat(actualText).isEqualTo(text);
+        Thread.sleep((long) (Constants.WAIT_FOR_SECONDS * 1000));
     }
 
     @Then("^element with xpath \"([^\"]*)\" should not have text as \"([^\"]*)\"$")
     public void elementWithXpathShouldNotHaveTextAs(String xpath, String text) throws InterruptedException {
         String actualText = getDriver().findElement(By.xpath(xpath)).getText();
-        Thread.sleep((long) (Constants.WAIT_FOR_SECONDS * 1000));
         assertThat(actualText).isNotEqualTo(text);
+        Thread.sleep((long) (Constants.WAIT_FOR_SECONDS * 1000));
     }
 
     @Then("^element with xpath \"([^\"]*)\" should contain text \"([^\"]*)\"$")
     public void elementWithXpathShouldContainText(String xpath, String text) throws InterruptedException {
         String actualText = getDriver().findElement(By.xpath(xpath)).getText();
-        Thread.sleep((long) (Constants.WAIT_FOR_SECONDS * 1000));
         assertThat(actualText).containsIgnoringCase(text);
+        Thread.sleep((long) (Constants.WAIT_FOR_SECONDS * 1000));
     }
 
     @Then("^element with xpath \"([^\"]*)\" should not contain text \"([^\"]*)\"$")
     public void elementWithXpathShouldNotContainText(String xpath, String text) throws InterruptedException {
         String actualText = getDriver().findElement(By.xpath(xpath)).getText();
-        Thread.sleep((long) (Constants.WAIT_FOR_SECONDS * 1000));
         assertThat(actualText).doesNotContain(text);
+        Thread.sleep((long) (Constants.WAIT_FOR_SECONDS * 1000));
     }
 
     @Then("^element with xpath \"([^\"]*)\" should have attribute \"([^\"]*)\" as \"([^\"]*)\"$")
     public void elementWithXpathShouldHaveAttributeAs(String xpath, String attribute, String attributeValue) throws InterruptedException {
-        Thread.sleep((long) (Constants.WAIT_FOR_SECONDS * 1000));
         assertThat(getDriver().findElement(By.xpath(xpath)).getAttribute(attribute)).isEqualTo(attributeValue);
+        Thread.sleep((long) (Constants.WAIT_FOR_SECONDS * 1000));
     }
 
     @Then("^element with xpath \"([^\"]*)\" should not have attribute \"([^\"]*)\" as \"([^\"]*)\"$")
     public void elementWithXpathShouldNotHaveAttributeAs(String xpath, String attribute, String attributeValue) throws InterruptedException {
-        Thread.sleep((long) (Constants.WAIT_FOR_SECONDS * 1000));
         assertThat(getDriver().findElement(By.xpath(xpath)).getAttribute(attribute)).isNotEqualTo(attributeValue);
+        Thread.sleep((long) (Constants.WAIT_FOR_SECONDS * 1000));
     }
 
     @Then("^I switch to iframe with xpath \"([^\"]*)\"$")
@@ -180,7 +234,7 @@ public class StepsDefinitionsCucumber {
     public void iSwitchToNewWindow() {
         Iterator<String> iterator = getDriver().getWindowHandles().iterator();
         String newWindow = iterator.next();
-        while(iterator.hasNext()) {
+        while (iterator.hasNext()) {
             newWindow = iterator.next();
         }
         getDriver().switchTo().window(newWindow);
@@ -236,20 +290,22 @@ public class StepsDefinitionsCucumber {
     }
 
     @When("^I mouse over element with xpath \"([^\"]*)\"$")
-    public void iMouseOverElementWithXpath(String xpath) {
+    public void iMouseOverElementWithXpath(String xpath) throws InterruptedException {
         new Actions(getDriver()).moveToElement(getDriver().findElement(By.xpath(xpath))).perform();
+        Thread.sleep((long) (Constants.WAIT_FOR_SECONDS * 1000));
+
     }
 
     @Then("I move slider {int} step {string} for xpath {string}")
     public void iMoveSliderStepRightForXpath(int numberOfSteps, String direction, String sliderXpath) {
-        for (int i = 0; i<numberOfSteps; i++) {
+        for (int i = 0; i < numberOfSteps; i++) {
             if (direction.equals("right")) {
                 getDriver().findElement(By.xpath(sliderXpath)).sendKeys(Keys.ARROW_RIGHT);
             }
             if (direction.equals("left")) {
                 getDriver().findElement(By.xpath(sliderXpath)).sendKeys(Keys.ARROW_LEFT);
             } else {
-                System.out.println("Error: Unknown direction for slider");
+                System.out.println("\nERROR: Unknown direction for slider in the cucumber step\n");
             }
         }
     }

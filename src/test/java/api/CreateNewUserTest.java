@@ -9,10 +9,8 @@ import source.Constants;
 import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
-
 import source.SqlQueriesJdbc;
 import source.UserRegisterData;
-
 import java.sql.SQLException;
 
 public class CreateNewUserTest {
@@ -39,19 +37,15 @@ public class CreateNewUserTest {
     }
 
     @AfterClass
-    public void retrieveUserIdAndActivationCode() throws SQLException {
-        String[] resultSet = SqlQueriesJdbc.getIdAndActivationCode(newUser.email).split(";");
+    public void activateUser() throws SQLException {
+        String[] resultSet = SqlQueriesJdbc.getIdAndActivationCodeFromDataBase(newUser.email).split(";");
         userId = Integer.parseInt(resultSet[0]);
         activationCode = resultSet[1];
-    }
-
-    @AfterClass (dependsOnMethods = {"retrieveUserIdAndActivationCode"})
-    public void activateUser() {
         ApiSpecs.setSpecs(ApiSpecs.request(Constants.URL_API), ApiSpecs.response(200));
         given()
                 .when()
                 .get("/activate/" + userId + "/" + activationCode)
-                .then()
+                .then().log().all()
                 .body("message", equalTo("User was activated"));
     }
 }

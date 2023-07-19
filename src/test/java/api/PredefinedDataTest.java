@@ -21,7 +21,7 @@ public class PredefinedDataTest {
     }
 
     @BeforeTest
-    public void getTeachersToken() {
+    public static void getTeachersToken() {
         ApiSpecs.setSpecs(ApiSpecs.request(Constants.URL_API), ApiSpecs.response(200));
         token = given()
                 .body(new Teacher())

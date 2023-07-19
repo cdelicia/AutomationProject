@@ -1,14 +1,15 @@
 @smoke
-Feature: Ask application testing
+Feature: Password field tests: boundary, valid/invalid, change password
+
+
+  Background:
+    Given I open "Login" page
+    Then I sign in as a "Alex Student"
+    Then I wait for element with xpath "//header/div" to be present
+    Then element with xpath "//header/div/h3" should contain text "Alex Student"
 
 
   Scenario: Student: Settings - Password. The user is able to change password with valid credentials
-    Given I open url "http://ask-int.portnov.com/#/login"
-    Then I should see page title as "Assessment Control @ Portnov"
-    And I type "rteager@btcmod.com" into element with xpath "//input[@formcontrolname='email']"
-    And I type "12345ABc" into element with xpath "//input[@formcontrolname='password']"
-    And I click on element with xpath "//button[@type='submit']"
-    Then I wait for element with xpath "//p[contains(text(),'STUDENT')]" to be present
     Then I click on element with xpath "//h5[contains(text(),'Settings')]"
     Then I wait for element with xpath "//h4[contains(text(),'Settings')]" to be present
     And I click on element with xpath "//span[contains(text(),'Change Your Password')]"
@@ -29,12 +30,6 @@ Feature: Ask application testing
 
 
   Scenario: Student: Settings - Password. The user cannot change password if new passwords do not match
-    Given I open url "http://ask-int.portnov.com/#/login"
-    Then I should see page title as "Assessment Control @ Portnov"
-    And I type "rteager@btcmod.com" into element with xpath "//input[@formcontrolname='email']"
-    And I type "12345ABc" into element with xpath "//input[@formcontrolname='password']"
-    And I click on element with xpath "//button[@type='submit']"
-    Then I wait for element with xpath "//p[contains(text(),'STUDENT')]" to be present
     Then I click on element with xpath "//h5[contains(text(),'Settings')]"
     Then I wait for element with xpath "//h4[contains(text(),'Settings')]" to be present
     And I click on element with xpath "//span[contains(text(),'Change Your Password')]"
@@ -48,12 +43,6 @@ Feature: Ask application testing
 
 
   Scenario: Student: Settings - Password. The user cannot change the password if new password contains less then 5 characters
-    Given I open url "http://ask-int.portnov.com/#/login"
-    Then I should see page title as "Assessment Control @ Portnov"
-    And I type "rteager@btcmod.com" into element with xpath "//input[@formcontrolname='email']"
-    And I type "12345ABc" into element with xpath "//input[@formcontrolname='password']"
-    And I click on element with xpath "//button[@type='submit']"
-    Then I wait for element with xpath "//p[contains(text(),'STUDENT')]" to be present
     Then I click on element with xpath "//h5[contains(text(),'Settings')]"
     Then I wait for element with xpath "//h4[contains(text(),'Settings')]" to be present
     And I click on element with xpath "//span[contains(text(),'Change Your Password')]"
@@ -67,12 +56,6 @@ Feature: Ask application testing
 
 
   Scenario: Student: Settings - Password. The user cannot change the password if new password contains more then 32 characters
-    Given I open url "http://ask-int.portnov.com/#/login"
-    Then I should see page title as "Assessment Control @ Portnov"
-    And I type "rteager@btcmod.com" into element with xpath "//input[@formcontrolname='email']"
-    And I type "12345ABc" into element with xpath "//input[@formcontrolname='password']"
-    And I click on element with xpath "//button[@type='submit']"
-    Then I wait for element with xpath "//p[contains(text(),'STUDENT')]" to be present
     Then I click on element with xpath "//h5[contains(text(),'Settings')]"
     Then I wait for element with xpath "//h4[contains(text(),'Settings')]" to be present
     And I click on element with xpath "//span[contains(text(),'Change Your Password')]"
@@ -86,12 +69,6 @@ Feature: Ask application testing
 
 
   Scenario: Student: Settings - Password. The user can change the password if the password contains all type of data
-    Given I open url "http://ask-int.portnov.com/#/login"
-    Then I should see page title as "Assessment Control @ Portnov"
-    And I type "rteager@btcmod.com" into element with xpath "//input[@formcontrolname='email']"
-    And I type "12345ABc" into element with xpath "//input[@formcontrolname='password']"
-    And I click on element with xpath "//button[@type='submit']"
-    Then I wait for element with xpath "//p[contains(text(),'STUDENT')]" to be present
     Then I click on element with xpath "//h5[contains(text(),'Settings')]"
     Then I wait for element with xpath "//h4[contains(text(),'Settings')]" to be present
     And I click on element with xpath "//span[contains(text(),'Change Your Password')]"
