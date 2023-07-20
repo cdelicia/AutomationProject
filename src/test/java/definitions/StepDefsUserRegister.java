@@ -86,7 +86,7 @@ public class StepDefsUserRegister {
     @And("I delete just registered user")
     public void deleteTheUser() {
         ApiSpecs.setSpecs(ApiSpecs.request(Constants.URL_API), ApiSpecs.response(200));
-        PredefinedDataTest.getTeachersToken();
+        PredefinedDataTest.generateTeachersToken();
         given()
                 .header("Authorization", "Bearer " + PredefinedDataTest.getToken())
                 .when()

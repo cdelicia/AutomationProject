@@ -39,7 +39,6 @@ public class CreateQuizTest {
 
     @Test
     public void createQuizTest() {
-        PredefinedDataTest.getTeachersToken();
         Response response = given()
                 .header("Authorization", "Bearer " + PredefinedDataTest.getToken())
                 .body(jsonObject.toString())

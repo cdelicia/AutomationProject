@@ -4,7 +4,7 @@
 <suite name="All API tests using RestAssured">
     <test name="REST API Reqres">
         <classes>
-            <class name="api.PredefinedDataTest"></class>
+            <class name="api.PredefinedDataTest"></class> <!--generate required Tokens for all tests-->
             <class name="api.ListOfAllUsersDataTest"></class>
             <class name="api.CreateNewUserTest"></class>
             <class name="api.UpdateUserTest"></class>
@@ -12,6 +12,8 @@
             <class name="api.CreateQuizTest"/>
             <class name="api.UpdateQuizTest"/>
             <class name="api.DeleteQuizTest"/>
+            <class name="api.GetStudentGradesTest"></class>
+            <class name="api.GetStudentAssignmentsTest"></class>
         </classes>
     </test>
 </suite>

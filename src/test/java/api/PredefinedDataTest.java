@@ -26,7 +26,7 @@ public class PredefinedDataTest {
     }
 
     @BeforeTest
-    public static void getTeachersToken() {
+    public static void generateTeachersToken() {
         ApiSpecs.setSpecs(ApiSpecs.request(Constants.URL_API), ApiSpecs.response(200));
         token = given()
                 .body(new Role("TEACHER"))
@@ -37,7 +37,7 @@ public class PredefinedDataTest {
     }
 
     @BeforeTest
-    public static void getStudentsToken() {
+    public static void generateStudentToken() {
         ApiSpecs.setSpecs(ApiSpecs.request(Constants.URL_API), ApiSpecs.response(200));
         studentToken = given()
                 .body(new Role("STUDENT"))
@@ -47,7 +47,7 @@ public class PredefinedDataTest {
                 .extract().body().jsonPath().getString("token");
     }
 
-    @BeforeTest(dependsOnMethods = {"getTeachersToken"})
+    @BeforeTest(dependsOnMethods = {"generateTeachersToken"})
     public void getListOfAllUsers() {
         ApiSpecs.setSpecs(ApiSpecs.request(Constants.URL_API), ApiSpecs.response(200));
         listOfAllUsers = given()
