@@ -1,22 +1,21 @@
 package api;
 
-import source.Constants;
 import org.testng.annotations.Test;
 import runtests.ApiSpecs;
-import static api.CreateNewUserTest.getUserId;
+import source.Constants;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
-public class DeleteUserTest {
-
+public class DeleteQuizTest {
     @Test
-    public void deleteUserTest() {
+    public void deleteQuizTest() {
         ApiSpecs.setSpecs(ApiSpecs.request(Constants.URL_API), ApiSpecs.response(200));
                 given()
                 .header("Authorization", "Bearer " + PredefinedDataTest.getToken())
                 .when()
-                .delete("/users/" + getUserId())
+                .delete("/quiz/" + CreateQuizTest.getQuizId())
                 .then()
-                .body("message", equalTo("User was deleted"));
+                .body("status", equalTo("success"))
+                .body("message", equalTo("Quiz was deleted"));
     }
 }
