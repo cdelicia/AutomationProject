@@ -1,4 +1,4 @@
-@smoke-debug
+@smoke
 Feature: New User Registration, Activation and then Deletion
 
   Scenario Outline: Student registration

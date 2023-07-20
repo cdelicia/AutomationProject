@@ -1,8 +1,5 @@
 package api;
 
-import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import runtests.ApiSpecs;
 import runtests.RetryAnalyzer;
@@ -16,7 +13,7 @@ import static org.hamcrest.Matchers.equalTo;
 public class UpdateUserTest {
 
     @Test (retryAnalyzer = RetryAnalyzer.class)
-    public void updateUserName() throws InterruptedException {
+    public void updateUserName() {
         ApiSpecs.setSpecs(ApiSpecs.request(Constants.URL_API), ApiSpecs.response(200));
         Map<String, String> newName = new HashMap<>();
         newName.put("name", "New name for John Snow");

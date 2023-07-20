@@ -2,7 +2,6 @@ package runtests;
 
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
-import source.Constants;
 
 public class RetryAnalyzer implements IRetryAnalyzer {
     private int count = 0;
