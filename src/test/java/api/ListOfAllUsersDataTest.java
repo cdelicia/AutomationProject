@@ -39,8 +39,6 @@ public class ListOfAllUsersDataTest {
                 countActiveUsers++;
             }
         }
-        System.out.println("count="+countActiveUsers);
-        System.out.println("total="+totalUsers);
         Assert.assertTrue(countActiveUsers > totalUsers / 2);
     }
 }

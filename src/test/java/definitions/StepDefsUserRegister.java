@@ -36,7 +36,6 @@ public class StepDefsUserRegister {
         URL url = new URL(URL_API + "/activate" + "/" + userId + "/" + resultSet[1]);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
-        connection.setRequestProperty("User-Agent", "USER_AGENT");
         responseCode = connection.getResponseCode();
         assertEquals(HttpURLConnection.HTTP_OK, responseCode);
     }

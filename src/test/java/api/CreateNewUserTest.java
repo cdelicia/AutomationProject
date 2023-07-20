@@ -45,7 +45,7 @@ public class CreateNewUserTest {
         given()
                 .when()
                 .get("/activate/" + userId + "/" + activationCode)
-                .then().log().all()
+                .then()
                 .body("message", equalTo("User was activated"));
     }
 }

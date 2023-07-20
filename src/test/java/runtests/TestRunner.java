@@ -9,8 +9,8 @@ import org.junit.runner.RunWith;
         plugin = {"pretty", "html:target/cucumber/index.html", "json:target/cucumber/report.json"},
         features = "src/test/resources/features",
         glue = {"definitions", "runtests"},
-        tags = "@smoke-debug" //mvn test -Dcucumber.options="--tags @smoke"
-        //tags = "@smoke-new-user"
+        //tags = "@smoke" //mvn test -Dcucumber.options="--tags @smoke"
+        tags = "@smoke-debug"
 )
 
 public class TestRunner {
