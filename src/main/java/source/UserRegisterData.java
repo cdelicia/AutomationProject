@@ -18,6 +18,6 @@ public class UserRegisterData {
         this.email = "autogen" + rand.nextInt(99) + dtf.format(now)+"@email.com";
         this.name = "John Snow";
         this.password = TEST_PASSWORD;
-        this.group = "ApiTests";
+        this.group = "ApiTest";
     }
 }
