@@ -37,7 +37,7 @@ public class CreateQuizTest {
         jsonObject.put("questions", array);
     }
 
-    @Test
+    @Test (groups = {"createQuizTest"})
     public void createQuizTest() {
         Response response = given()
                 .header("Authorization", "Bearer " + PredefinedDataTest.getToken())

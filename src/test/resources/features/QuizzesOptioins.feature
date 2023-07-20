@@ -10,12 +10,12 @@ Feature: Choose / Move / Add / Delete an Option in quizzes
     Then I click on element with xpath "//h5[contains(text(),'My Assignments')]"
     And The element with xpath "//h4[contains(text(),'My Assignments')]" should be presented
     And I wait for 1 sec
-    Then I click on element with xpath "//td[contains(text(), 'API OlgaG Quiz')]//following::span[1]"
-    And The element with xpath "//h4[contains(text(), 'API OlgaG Quiz')]" should be presented
+    Then I click on element with xpath "//td[contains(text(), '0000 OlgaG Quiz')]//following::span[1]"
+    And The element with xpath "//h4[contains(text(), '0000 OlgaG Quiz')]" should be presented
     Then I click on element with xpath "(//label[@class='mat-radio-label'])[1]"
-    And element with xpath "//input[@id='mat-radio-2-input']" should be selected
+    And element with xpath "(//h3[contains(text(), 'California')]//following::input[@type='radio'])[1]" should be selected
     Then I click on element with xpath "(//label[@class='mat-radio-label'])[2]"
-    And element with xpath "//input[@id='mat-radio-2-input']" should not be selected
+    And element with xpath "(//h3[contains(text(), 'California')]//following::input[@type='radio'])[1]" should not be selected
 
 
   Scenario: Teacher moves option down

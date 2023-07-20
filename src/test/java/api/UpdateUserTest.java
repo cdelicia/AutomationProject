@@ -12,7 +12,8 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class UpdateUserTest {
 
-    @Test (retryAnalyzer = RetryAnalyzer.class)
+    @Test (groups = {"updateNewUserTest"}, dependsOnGroups = {"createNewUserTest"},
+            retryAnalyzer = RetryAnalyzer.class)
     public void updateUserName() {
         ApiSpecs.setSpecs(ApiSpecs.request(Constants.URL_API), ApiSpecs.response(200));
         Map<String, String> newName = new HashMap<>();

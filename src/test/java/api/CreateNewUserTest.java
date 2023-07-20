@@ -22,7 +22,7 @@ public class CreateNewUserTest {
         return userId;
     }
 
-    @Test
+    @Test (groups = {"createNewUserTest"})
     public void createNewUserTest() {
         ApiSpecs.setSpecs(ApiSpecs.request(Constants.URL_API), ApiSpecs.response(200));
         Response response = given()

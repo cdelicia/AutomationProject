@@ -9,7 +9,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class DeleteUserTest {
 
-    @Test
+    @Test (dependsOnGroups = {"updateNewUserTest"})
     public void deleteUserTest() {
         ApiSpecs.setSpecs(ApiSpecs.request(Constants.URL_API), ApiSpecs.response(200));
                 given()

@@ -7,7 +7,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
 public class DeleteQuizTest {
-    @Test
+    @Test (dependsOnGroups = {"updateQuizTest"})
     public void deleteQuizTest() {
         ApiSpecs.setSpecs(ApiSpecs.request(Constants.URL_API), ApiSpecs.response(200));
                 given()

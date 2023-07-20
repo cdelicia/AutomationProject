@@ -31,8 +31,8 @@ public class UpdateQuizTest {
         jsonObject.put("questions", array);
     }
 
-    @Test
-    public void deleteQuizTest() {
+    @Test (groups = {"updateQuizTest"}, dependsOnGroups = {"createQuizTest"})
+    public void updateQuizTest() {
         ApiSpecs.setSpecs(ApiSpecs.request(Constants.URL_API), ApiSpecs.response(200));
                 given()
                 .header("Authorization", "Bearer " + PredefinedDataTest.getToken())
