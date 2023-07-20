@@ -10,6 +10,7 @@
             <class name="api.UpdateUserTest"></class>
             <class name="api.DeleteUserTest"></class>
             <class name="api.CreateQuizTest"/>
+            <class name="api.UpdateQuizTest"/>
             <class name="api.DeleteQuizTest"/>
         </classes>
     </test>

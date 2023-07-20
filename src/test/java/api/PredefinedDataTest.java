@@ -3,13 +3,14 @@ package api;
 import org.testng.annotations.BeforeTest;
 import runtests.ApiSpecs;
 import source.Constants;
+import source.Role;
 import source.SingleUserData;
-import source.Teacher;
 import java.util.List;
 import static io.restassured.RestAssured.given;
 
 public class PredefinedDataTest {
     private static String token;
+    private static String studentToken;
     private static List<SingleUserData> listOfAllUsers;
 
     public static List<SingleUserData> getList() {
@@ -20,11 +21,26 @@ public class PredefinedDataTest {
         return token;
     }
 
+    public static String getStudentToken() {
+        return studentToken;
+    }
+
     @BeforeTest
     public static void getTeachersToken() {
         ApiSpecs.setSpecs(ApiSpecs.request(Constants.URL_API), ApiSpecs.response(200));
         token = given()
-                .body(new Teacher())
+                .body(new Role("TEACHER"))
+                .when()
+                .post("/sign-in")
+                .then()
+                .extract().body().jsonPath().getString("token");
+    }
+
+    @BeforeTest
+    public static void getStudentsToken() {
+        ApiSpecs.setSpecs(ApiSpecs.request(Constants.URL_API), ApiSpecs.response(200));
+        studentToken = given()
+                .body(new Role("STUDENT"))
                 .when()
                 .post("/sign-in")
                 .then()

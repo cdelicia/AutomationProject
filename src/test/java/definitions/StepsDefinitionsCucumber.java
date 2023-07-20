@@ -54,8 +54,8 @@ public class StepsDefinitionsCucumber {
                 getDriver().findElement(By.xpath(Constants.BUTTON_SIGN_IN_XPATH)).click();
                 break;
             case "volha teacher":
-                getDriver().findElement(By.xpath(Constants.FIELD_EMAIL_XPATH)).sendKeys(Constants.VOLHA_STUDENT_EMAIL);
-                getDriver().findElement(By.xpath(Constants.FIELD_PASSWORD_XPATH)).sendKeys(Constants.VOLHA_STUDENT_PASSWORD);
+                getDriver().findElement(By.xpath(Constants.FIELD_EMAIL_XPATH)).sendKeys(Constants.VOLHA_TEACHER_EMAIL);
+                getDriver().findElement(By.xpath(Constants.FIELD_PASSWORD_XPATH)).sendKeys(Constants.VOLHA_TEACHER_PASSWORD);
                 getDriver().findElement(By.xpath(Constants.BUTTON_SIGN_IN_XPATH)).click();
                 break;
             case "Diana Brown":
