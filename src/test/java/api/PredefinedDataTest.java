@@ -47,7 +47,7 @@ public class PredefinedDataTest {
                 .extract().body().jsonPath().getString("token");
     }
 
-    @BeforeTest(dependsOnMethods = {"generateTeachersToken"})
+    @BeforeTest (dependsOnMethods = {"generateTeachersToken"})
     public void getListOfAllUsers() {
         ApiSpecs.setSpecs(ApiSpecs.request(Constants.URL_API), ApiSpecs.response(200));
         listOfAllUsers = given()

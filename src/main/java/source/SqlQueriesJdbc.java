@@ -18,6 +18,7 @@ public class SqlQueriesJdbc {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        dbConnection.close();
         return result;
     }
 

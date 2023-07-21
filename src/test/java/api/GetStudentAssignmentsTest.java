@@ -9,6 +9,7 @@ import java.util.List;
 import static io.restassured.RestAssured.given;
 
 public class GetStudentAssignmentsTest {
+
     @Test
     public void getStudentGrades() {
         Response response = given()
