@@ -65,7 +65,6 @@ public class TestEnvironmentConfig {
                         chromeOptions.addArguments("--window-size=1920,1024");
                         chromeOptions.addArguments("--disable-gpu");
                     }
-                    //driver = new ChromeDriver();
                     driver = new ChromeDriver(chromeOptions);
                     break;
                 case "firefox":
@@ -94,7 +93,7 @@ public class TestEnvironmentConfig {
                 default:
                     throw new RuntimeException("Driver is not implemented for: " + browser);
             }
-        } /*else if (testEnv.equals("grid")) {
+        } else if (testEnv.equals("grid")) {
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setBrowserName(browser);
             capabilities.setPlatform(Platform.ANY);
@@ -104,7 +103,7 @@ public class TestEnvironmentConfig {
             } catch (MalformedURLException e) {
                 throw new RuntimeException(e.getMessage());
             }
-        }*/ else {
+        } else {
             throw new RuntimeException("Unsupported test environment: " + testEnv);
         }
     }
