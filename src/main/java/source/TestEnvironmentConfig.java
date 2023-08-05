@@ -53,7 +53,6 @@ public class TestEnvironmentConfig {
                     chromePreferences.put("password_manager_enabled", false);
 
                     ChromeOptions chromeOptions = new ChromeOptions();
-                    //chromeOptions.setBinary("/Users/dima/.cache/selenium/chromedriver/mac-arm64/115.0.5790.98/chromedriver");
                     if (Constants.START_MAXIMIZED)
                         chromeOptions.addArguments("--start-maximized");
                     chromeOptions.addArguments("--no-sandbox");

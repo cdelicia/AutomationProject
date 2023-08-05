@@ -15,6 +15,7 @@ public class SqlQueriesJdbc {
             while (resultSet.next()) {
                 result = resultSet.getString("id") + ";" + resultSet.getString("activationCode");
             }
+            resultSet.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
