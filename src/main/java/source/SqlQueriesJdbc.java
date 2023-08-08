@@ -48,8 +48,10 @@ public class SqlQueriesJdbc {
                 }
                 System.out.println();
             }
+            resultSet.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        dbConnection.close();
     }
 }
