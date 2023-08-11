@@ -42,9 +42,7 @@ public class TestEnvironmentConfig {
         if (testEnv.equals("local")) {
             switch (browser) {
                 case "chrome":
-                    //WebDriverManager.chromedriver().arm64().setup();
-                    System.setProperty("webdriver.chrome.driver", "/Users/dima/Desktop/chromedriver_mac_arm64/chromedriver");
-
+                    WebDriverManager.chromedriver().arm64().setup();
                     Map<String, Object> chromePreferences = new HashMap<>();
                     chromePreferences.put("profile.default_content_settings.geolocation", 2);
                     chromePreferences.put("download.prompt_for_download", false);
@@ -92,13 +90,13 @@ public class TestEnvironmentConfig {
                 default:
                     throw new RuntimeException("Driver is not implemented for: " + browser);
             }
-        } else if (testEnv.equals("grid")) {
+        } else if (testEnv.equals("grid-aws")) {
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setBrowserName(browser);
             capabilities.setPlatform(Platform.ANY);
             try {
-                URL hubUrl = new URL("http://localhost:4444/wd/hub");
-                driver = new RemoteWebDriver(hubUrl, capabilities);
+                URL awsUrl = new URL("http://3.86.255.205:4444");
+                driver = new RemoteWebDriver(awsUrl, capabilities);
             } catch (MalformedURLException e) {
                 throw new RuntimeException(e.getMessage());
             }

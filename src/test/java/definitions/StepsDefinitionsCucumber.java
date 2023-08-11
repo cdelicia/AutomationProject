@@ -96,7 +96,7 @@ public class StepsDefinitionsCucumber {
         assertThat(getDriver().findElements(By.xpath(xpath))).hasSize(1);
     }
 
-    @Then("^The element with xpath \"([^\"]*)\" should not be presented$") //OLD
+    @Then("^The element with xpath \"([^\"]*)\" should not be presented$")
     public void elementWithXpathShouldNotBePresent(String xpath) {
         assertThat(getDriver().findElements(By.xpath(xpath))).hasSize(0);
     }
